@@ -54,6 +54,17 @@
       ],
       "Hash": "4f572fbc586294afff277db583b9060f"
     },
+    "box": {
+      "Package": "box",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "tools"
+      ],
+      "Hash": "d94049c1d9446b0abb413fde9e82a505"
+    },
     "cli": {
       "Package": "cli",
       "Version": "3.6.4",
