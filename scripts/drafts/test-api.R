@@ -1,8 +1,16 @@
-library(httr2)
-library(jsonlite)
 library(dplyr)
+library(jsonlite)
 library(stringr)
 library(glue)
+
+box::use(
+  ../functions/antrhopic[
+    create_anthropic_body, 
+    send_anthropic_request,
+  ],
+)
+
+# Analysis inputs --------------------------------------------------
 
 get_tc_from_banks <- function() {
   URL <- paste0(
@@ -46,6 +54,9 @@ current_summary <- tc_banks |>
     n_banks = n()
   )
 
+
+# Prepare and perform request -----------------------------------------------
+
 message <- glue(
   "
   I need a short summary in spanish about the recent changes in the exchange rates of the Banks in the Dominican Republic,
@@ -62,34 +73,7 @@ message <- glue(
   "
 )
 
-# Set API endpoint and key
-url <- "https://api.anthropic.com/v1/messages"
-api_key <- Sys.getenv("ANTHROPIC_API_KEY")
-
-# Create request body
-body <- list(
-  model = "claude-3-7-sonnet-20250219",
-  max_tokens = 1024,
-  system="You're an economist, analyst of a Central Bank",
-  messages = list(
-    list(
-      role = "user", 
-      content = message
-    )
-  )
-)
-
-# Send request
-response <- request(url) %>%
-  req_headers(
-    "x-api-key" = api_key,
-    "anthropic-version" = "2023-06-01",
-    "content-type" = "application/json"
-  ) %>%
-  req_body_json(body) %>%
-  req_perform()
-
-# Parse and print response
-content <- resp_body_json(response)
+body <- create_anthropic_body(message = message)
+content <- send_anthropic_request(body)
 
 cat(content$content[[1]]$text)
