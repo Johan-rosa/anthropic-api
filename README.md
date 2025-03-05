@@ -6,7 +6,7 @@ Tools to use the claude/anthropic LLM model from R.
 
 ### Functions
 
-The following functions are available in [scripts/functions/antrhopic.R](scripts/functions/antrhopic.R):
+The following functions are available in [scripts/functions/anthropic.R](scripts/functions/anthropic.R):
 
 - `create_anthropic_body(message, model = "claude-3-7-sonnet-20250219", max_tokens = 1024)`: Creates the request body for the Anthropic API.
 - `send_anthropic_request(body, api_key = NULL)`: Sends a request to the Anthropic API using the specified model.
@@ -17,7 +17,7 @@ Here are some examples of how to use the functions:
 
 ```r
 box::use(
-    scripts/functions/antrhopic[
+    scripts/functions/anthropic[
         create_anthropic_body, 
         send_anthropic_request,
     ],

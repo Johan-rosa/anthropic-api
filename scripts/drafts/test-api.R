@@ -4,7 +4,7 @@ library(stringr)
 library(glue)
 
 box::use(
-  ../functions/antrhopic[
+  ../functions/anthropic[
     create_anthropic_body, 
     send_anthropic_request,
   ],
