@@ -1,6 +1,6 @@
 # ANTHROPIC API for R users
 
-Tools to use the claude/anthropic LLM model from R.
+Tools to use the [claude/anthropic](https://docs.anthropic.com/en/home) LLM model's API from R.
 
 ## Usage
 
